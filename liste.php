@@ -4,9 +4,10 @@
 <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link href="bootstrap.min.css" rel="stylesheet">
+      <!-- <link href="bootstrap.min.css" rel="stylesheet"> -->
 
-      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+      <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap.min.css">
       <title>Liste des etudiants</title>
 </head>
 <?php
@@ -37,40 +38,42 @@
     <div class="">
         <div class="col-sm-8 col-sm-offset-2">
             <h2>Liste des eleves</h2>
-            <table id="liste">
+            <table id="liste" class="table table-striped table-bordered" style="width:100%">
                   <thead>
                         <tr>
                               <th>Prénom</th>
                               <th>Nom</th>
                               <th>Email</th>
                               <th>Genre</th>
+                              <th>Actions</th>
                         </tr>
                   </thead>
                   <tbody>
-<?php
-                  for ($i = 1; $i <= $NbrLigne; $i++)
-                  {
-                        $donnees = $req->fetch();
-                        echo '<tr>';
-                        for ($j=0; $j<=3; $j++) {
-                              echo '<td>';
-                              // ------------------------------------------
-                              // AFFICHAGE ligne $i, colonne $j
-                              echo $donnees[$j];
-                              // ------------------------------------------
-                              echo '</td>';
+                    <?php
+                        for ($i = 1; $i <= $NbrLigne; $i++)
+                        {
+                                $donnees = $req->fetch();
+                                echo '<tr>';
+                                for ($j=0; $j<=3; $j++) {
+                                    echo '<td>';
+                                    // ------------------------------------------
+                                    // AFFICHAGE ligne $i, colonne $j
+                                    echo $donnees[$j];
+                                    // ------------------------------------------
+                                    echo '</td>';
+                                }
+                                echo '</tr>';
+                                $j=1;
                         }
-                        echo '</tr>';
-                        $j=1;
-                  }
-?>
+                    ?>
                   </tbody>
                   <tfoot>
                         <tr>
-                              <th>Nom</th>
-                              <th>Prenom</th>
-                              <th>Email</th>
-                              <th>Genre</th>
+                            <th>Prenom</th>
+                            <th>Nom</th>
+                            <th>Email</th>
+                            <th>Genre</th>
+                            <th>Actions</th>
                         </tr>
                   </tfoot>
             </table>
@@ -87,6 +90,7 @@
             } );
       } );
     </script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap.min.js"></script>
 </body>
 </html>
