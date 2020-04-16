@@ -12,7 +12,7 @@
 <?php
             try
             {
-            $bdd = new PDO('mysql:host=localhost;dbname=InscriptionEtudiant', 'root', ''); // Penser a modifier pour que ca marche
+            $bdd = new PDO('mysql:host=localhost;dbname=InscriptionEtudiant', 'root', 'root'); // Penser a modifier pour que ca marche
             }
             catch (Exception $e)
             {
@@ -44,6 +44,7 @@
                               <th>Nom</th>
                               <th>Email</th>
                               <th>Genre</th>
+                              <th></th> 
                         </tr>
                   </thead>
                   <tbody>
@@ -60,6 +61,7 @@
                               // ------------------------------------------
                               echo '</td>';
                         }
+                        echo '<td> <button type="button" id="'.$donnees[2].'">Supprimer</button> </td>';
                         echo '</tr>';
                         $j=1;
                   }
@@ -67,10 +69,11 @@
                   </tbody>
                   <tfoot>
                         <tr>
+                              <th>Prénom</th>
                               <th>Nom</th>
-                              <th>Prenom</th>
                               <th>Email</th>
                               <th>Genre</th>
+                              <th></th>
                         </tr>
                   </tfoot>
             </table>
