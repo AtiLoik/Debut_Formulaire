@@ -10,19 +10,28 @@
       <title>Liste des etudiants</title>
 </head>
 <?php
-            try
-            {
-            $bdd = new PDO('mysql:host=localhost;dbname=InscriptionEtudiant', 'root', 'root'); // Penser a modifier pour que ca marche
-            }
-            catch (Exception $e)
-            {
-                  echo 'Erreur lors de la connexion a la Base de données';
-            }
+try
+{
+$bdd = new PDO('mysql:host=localhost;dbname=table', 'root', ''); // Penser a modifier pour que ca marche
+}
+catch (Exception $e)
+{
+      echo 'Erreur lors de la connexion a la Base de données';
+}
 
-            $NbrLigne = $bdd->query('SELECT count(nom) FROM Etudiant')->fetchColumn();
-            $req = $bdd->prepare('SELECT prenom, nom, mail, genre FROM Etudiant');
-            $req->execute();
-      ?>
+if (isset($_POST["supprimer"]))
+{
+      $mail = $_POST["mail_a_supprimer"];
+
+      $statement = $bdd->prepare('DELETE FROM etudiant WHERE mail=:mail');
+      $statement->bindParam(':mail', $mail);
+      $statement->execute();
+}
+
+$NbrLigne = $bdd->query('SELECT count(nom) FROM Etudiant')->fetchColumn();
+$req = $bdd->prepare('SELECT prenom, nom, mail, genre FROM Etudiant');
+$req->execute();
+?>
       
 <body>
     <nav class="navbar navbar-default">
@@ -61,7 +70,12 @@
                               // ------------------------------------------
                               echo '</td>';
                         }
-                        echo '<td> <button type="button" id="'.$donnees[2].'">Supprimer</button> </td>';
+                        echo '<td>';
+                        echo '<form method="post">';
+                        echo '<input type="hidden" name="mail_a_supprimer" value="'.$donnees[2].'">';
+                        echo '<button type="submit" name="supprimer">Supprimer</button>';
+                        echo '</form>';
+                        echo '</td>';
                         echo '</tr>';
                         $j=1;
                   }
