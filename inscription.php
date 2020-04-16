@@ -35,7 +35,7 @@ catch (Exception $e)
 
         echo "Success";
         
-        include "fin.php";
+        include "liste.php";
     }
 
 ?>
