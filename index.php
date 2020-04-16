@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 <!DOCTYPE html>
 <html lang="en">
@@ -61,6 +60,7 @@
                               // ------------------------------------------
                               echo '</td>';
                         }
+                        echo '<td> <button type="button" id="'.$donnees[2].'">Supprimer</button> </td>';
                         echo '</tr>';
                         $j=1;
                   }
