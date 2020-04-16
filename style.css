@@ -30,3 +30,20 @@ button {
 label {
     font-family: Times, serif;
 }
+
+.table_etudiants button {
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+}
+
+/* Boutons mouse hover */
+.table_etudiants button:hover {
+    filter: opacity(.8);
+}
+
+/* Bouton Supprimer */
+.button-delete {
+    background-image: linear-gradient(120deg, #dd8888 0%, #ff002a 100%);
+    border: none;
+}

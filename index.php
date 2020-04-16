@@ -6,7 +6,9 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link href="bootstrap.min.css" rel="stylesheet">
 
+      <link rel="stylesheet" type="text/css" href="style.css">
       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <title>Liste des etudiants</title>
 </head>
 <?php
@@ -46,14 +48,14 @@ $req->execute();
     <div class="">
         <div class="col-sm-8 col-sm-offset-2">
             <h2>Liste des eleves</h2>
-            <table id="liste">
+            <table id="liste" class="table_etudiants">
                   <thead>
                         <tr>
                               <th>Prénom</th>
                               <th>Nom</th>
                               <th>Email</th>
                               <th>Genre</th>
-                              <th></th> 
+                              <th>Actions</th>
                         </tr>
                   </thead>
                   <tbody>
@@ -62,7 +64,8 @@ $req->execute();
                   {
                         $donnees = $req->fetch();
                         echo '<tr>';
-                        for ($j=0; $j<=3; $j++) {
+                        for ($j = 0; $j <= 3; $j++)
+                        {
                               echo '<td>';
                               // ------------------------------------------
                               // AFFICHAGE ligne $i, colonne $j
@@ -70,12 +73,14 @@ $req->execute();
                               // ------------------------------------------
                               echo '</td>';
                         }
-                        echo '<td>';
-                        echo '<form method="post">';
-                        echo '<input type="hidden" name="mail_a_supprimer" value="'.$donnees[2].'">';
-                        echo '<button type="submit" name="supprimer">Supprimer</button>';
-                        echo '</form>';
-                        echo '</td>';
+                        echo '      <td>';
+                        echo '            <form method="post" onsubmit="return confirm(\'Êtes-vous sûr de vouloir supprimer cette personne ?\');">';
+                        echo '                  <input type="hidden" name="mail_a_supprimer" value="'.$donnees[2].'">';
+                        echo '                  <button type="submit" name="supprimer" class="button-delete">';
+                        echo '                        Supprimer';
+                        echo '                  </button>';
+                        echo '            </form>';
+                        echo '      </td>';
                         echo '</tr>';
                         $j=1;
                   }
@@ -87,7 +92,7 @@ $req->execute();
                               <th>Nom</th>
                               <th>Email</th>
                               <th>Genre</th>
-                              <th></th>
+                              <th>Actions</th>
                         </tr>
                   </tfoot>
             </table>
