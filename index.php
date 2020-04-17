@@ -82,10 +82,11 @@ $req->execute();
                         echo '            </form>';
                         echo '      </td>';
                          echo '      <td>';
+                         echo '            <form  action="update.php" method="post" >';
                         echo '                  <button type="submit" name="supprimer" class="button-update">';
                         echo '                        Modifier';
                         echo '                  </button>';
-                        
+                        echo '            </form>';
                         echo '      </td>';
                         echo '</tr>';
                         $j=1;
