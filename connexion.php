@@ -14,7 +14,7 @@ catch (Exception $e)
         $password = $_POST['password'];
      
 
-        $stmt = $bdd->prepare("SELECT * from  `Admin` e where e.login = ? and e.password = ? ");
+        $stmt = $bdd->prepare("SELECT * from  `Admin` a where a.MAIL = ? and a.PASSWORD = ? ");
         $stmt->bindParam(1, $login);
         $stmt->bindParam(2, $password);
         
