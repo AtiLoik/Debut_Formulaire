@@ -3,7 +3,7 @@
 // Connexion à la base avec PDO
 try
 {
-    $bdd = new PDO('mysql:host=localhost;dbname=table', 'root', 'root');
+    $bdd = new PDO('mysql:host=localhost;dbname=InscriptionEtudiant', 'root', '');
 }
 catch (Exception $e)
 {
@@ -36,7 +36,7 @@ catch (Exception $e)
         echo "Success";
         
         include "index.php";
-         header('./index.php');
+         header("location: index.php");
     }
 
 ?>

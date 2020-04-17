@@ -14,7 +14,7 @@
 <?php
 try
 {
-$bdd = new PDO('mysql:host=localhost;dbname=table', 'root', 'root'); // Penser a modifier pour que ca marche
+$bdd = new PDO('mysql:host=localhost;dbname=InscriptionEtudiant', 'root', ''); // Penser a modifier pour que ca marche
 }
 catch (Exception $e)
 {
@@ -32,7 +32,7 @@ if (isset($_POST["supprimer"]))
 
 if (isset($_POST["update"]))
 {
-      header('Location: localhost:8888/Debut_Formulaire/update.php');
+      header('Location: update.php');
   exit();
 }
     
