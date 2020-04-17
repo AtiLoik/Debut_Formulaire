@@ -6,23 +6,34 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link href="bootstrap.min.css" rel="stylesheet">
 
+      <link rel="stylesheet" type="text/css" href="style.css">
       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <title>Liste des etudiants</title>
 </head>
 <?php
-            try
-            {
-            $bdd = new PDO('mysql:host=localhost;dbname=InscriptionEtudiant', 'root', ''); // Penser a modifier pour que ca marche
-            }
-            catch (Exception $e)
-            {
-                  echo 'Erreur lors de la connexion a la Base de données';
-            }
+try
+{
+$bdd = new PDO('mysql:host=localhost;dbname=table', 'root', ''); // Penser a modifier pour que ca marche
+}
+catch (Exception $e)
+{
+      echo 'Erreur lors de la connexion a la Base de données';
+}
 
-            $NbrLigne = $bdd->query('SELECT count(nom) FROM Etudiant')->fetchColumn();
-            $req = $bdd->prepare('SELECT prenom, nom, mail, genre FROM Etudiant');
-            $req->execute();
-      ?>
+if (isset($_POST["supprimer"]))
+{
+      $mail = $_POST["mail_a_supprimer"];
+
+      $statement = $bdd->prepare('DELETE FROM etudiant WHERE mail=:mail');
+      $statement->bindParam(':mail', $mail);
+      $statement->execute();
+}
+
+$NbrLigne = $bdd->query('SELECT count(nom) FROM Etudiant')->fetchColumn();
+$req = $bdd->prepare('SELECT prenom, nom, mail, genre FROM Etudiant');
+$req->execute();
+?>
       
 <body>
     <nav class="navbar navbar-default">
@@ -37,13 +48,14 @@
     <div class="">
         <div class="col-sm-8 col-sm-offset-2">
             <h2>Liste des eleves</h2>
-            <table id="liste">
+            <table id="liste" class="table_etudiants">
                   <thead>
                         <tr>
                               <th>Prénom</th>
                               <th>Nom</th>
                               <th>Email</th>
                               <th>Genre</th>
+                              <th>Actions</th>
                         </tr>
                   </thead>
                   <tbody>
@@ -52,7 +64,8 @@
                   {
                         $donnees = $req->fetch();
                         echo '<tr>';
-                        for ($j=0; $j<=3; $j++) {
+                        for ($j = 0; $j <= 3; $j++)
+                        {
                               echo '<td>';
                               // ------------------------------------------
                               // AFFICHAGE ligne $i, colonne $j
@@ -60,7 +73,14 @@
                               // ------------------------------------------
                               echo '</td>';
                         }
-                        echo '<td> <button type="button" id="'.$donnees[2].'">Supprimer</button> </td>';
+                        echo '      <td>';
+                        echo '            <form method="post" onsubmit="return confirm(\'Êtes-vous sûr de vouloir supprimer cette personne ?\');">';
+                        echo '                  <input type="hidden" name="mail_a_supprimer" value="'.$donnees[2].'">';
+                        echo '                  <button type="submit" name="supprimer" class="button-delete">';
+                        echo '                        Supprimer';
+                        echo '                  </button>';
+                        echo '            </form>';
+                        echo '      </td>';
                         echo '</tr>';
                         $j=1;
                   }
@@ -68,10 +88,11 @@
                   </tbody>
                   <tfoot>
                         <tr>
+                              <th>Prénom</th>
                               <th>Nom</th>
-                              <th>Prenom</th>
                               <th>Email</th>
                               <th>Genre</th>
+                              <th>Actions</th>
                         </tr>
                   </tfoot>
             </table>
