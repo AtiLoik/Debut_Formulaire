@@ -83,7 +83,7 @@ $req->execute();
                         echo '      </td>';
                          echo '      <td>';
                          echo '            <form  action="update.php" method="post" >';
-                        echo '                  <button type="submit" name="supprimer" class="button-update">';
+                        echo '                  <button type="submit" name="modifier" class="button-update" value="'.$donnees[2].'">';
                         echo '                        Modifier';
                         echo '                  </button>';
                         echo '            </form>';
