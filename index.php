@@ -31,8 +31,8 @@ if (isset($_POST["supprimer"]))
 }
 
 if (isset($_POST["update"]))
-{
-      header('Location: update.php');
+{      $mail = $_POST["mail_a_modifier"]; 
+      header('Location: update.php/?mail='.$mail);
   exit();
 }
     

@@ -1,6 +1,6 @@
 <?php 
 var_dump($_POST);
-$mail = $_POST['mail_a_modifier'];
+$mail = $_GET['mail'];
 if (isset($_POST['envoyer']))
 {
 
