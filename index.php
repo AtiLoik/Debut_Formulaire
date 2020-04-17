@@ -14,7 +14,7 @@
 <?php
 try
 {
-$bdd = new PDO('mysql:host=localhost;dbname=table', 'root', ''); // Penser a modifier pour que ca marche
+$bdd = new PDO('mysql:host=localhost;dbname=inscriptionetudiant', 'root', ''); // Penser a modifier pour que ca marche
 }
 catch (Exception $e)
 {
@@ -81,8 +81,15 @@ $req->execute();
                         echo '                  </button>';
                         echo '            </form>';
                         echo '      </td>';
+                         echo '      <td>';
+                        echo '                  <button type="submit" name="supprimer" class="button-update">';
+                        echo '                        Modifier';
+                        echo '                  </button>';
+                        
+                        echo '      </td>';
                         echo '</tr>';
                         $j=1;
+
                   }
 ?>
                   </tbody>
