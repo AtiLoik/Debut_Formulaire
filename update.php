@@ -1,5 +1,4 @@
 <?php 
-var_dump($_POST);
 $mail = $_GET['mail'];
 if (isset($_POST['envoyer']))
 {
@@ -9,10 +8,18 @@ $nom = $_POST['nom'];
 $email = $_POST['mail2'];   
 $genre = $_POST['genre'];  
 try{
+    try
+    {
+        $bdd = new PDO('mysql:host=localhost;dbname=inscriptionetudiant', 'root', '');
+    }
+    catch (Exception $e)
+    {
+
+    }
                 
              $sql = "UPDATE Etudiant SET prenom='$prenom',nom='$nom',genre='$genre',mail='$email' WHERE mail='$mail'";
                 
-                $conn->exec($sql);
+                $bdd->exec($sql);
                 echo 'Entrée Modifiée dans la table';
                 header("location: index.php");
             }

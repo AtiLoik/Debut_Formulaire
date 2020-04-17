@@ -32,7 +32,7 @@ if (isset($_POST["supprimer"]))
 
 if (isset($_POST["update"]))
 {      $mail = $_POST["mail_a_modifier"]; 
-      header('Location: update.php/?mail='.$mail);
+      header('Location: update.php?mail='.$mail);
   exit();
 }
     
@@ -102,19 +102,10 @@ $req->execute();
                       echo '      <td>';
                         echo '            <form method="post" onsubmit="return confirm(\'Êtes-vous sûr de vouloir modifier cette personne ?\');">';
                         echo '                  <input type="hidden" name="mail_a_modifier" value="'.$donnees[2].'">';
-                        echo '                  <button type="submit" name="update" class="button-delete">';
+                        echo '                  <button type="submit" name="update" class="button-update">';
                         echo '                        Modifier';
                         echo '                  </button>';
                         echo '            </form>';
-                      
-                        echo '      </td>';
-                         echo '      <td>';
-                         echo '            <form  action="update.php" method="post" >';
-                        echo '                  <button type="submit" name="supprimer" class="button-update">';
-                        echo '                        Modifier';
-                        echo '                  </button>';
-                        echo '            </form>';
-                        echo '      </td>';
                         echo '</tr>';
                         $j=1;
 
