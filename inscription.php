@@ -35,7 +35,7 @@ catch (Exception $e)
 
         echo "Success";
         
-        include "index.php";
+        header('Location: index.php'); 
     }
 
 ?>

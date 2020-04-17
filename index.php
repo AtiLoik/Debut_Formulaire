@@ -14,7 +14,7 @@
 <?php
 try
 {
-$bdd = new PDO('mysql:host=localhost;dbname=table', 'root', ''); // Penser a modifier pour que ca marche
+$bdd = new PDO('mysql:host=localhost;dbname=InscriptionEtudiant', 'root', ''); // Penser a modifier pour que ca marche
 }
 catch (Exception $e)
 {
