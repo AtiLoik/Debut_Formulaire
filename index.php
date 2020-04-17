@@ -14,7 +14,7 @@
 <?php
 try
 {
-$bdd = new PDO('mysql:host=localhost;dbname=table', 'root', ''); // Penser a modifier pour que ca marche
+$bdd = new PDO('mysql:host=localhost;dbname=table', 'root', 'root'); // Penser a modifier pour que ca marche
 }
 catch (Exception $e)
 {
@@ -30,6 +30,13 @@ if (isset($_POST["supprimer"]))
       $statement->execute();
 }
 
+if (isset($_POST["update"]))
+{
+      header('Location: localhost:8888/Debut_Formulaire/update.php');
+  exit();
+}
+    
+    
 $NbrLigne = $bdd->query('SELECT count(nom) FROM Etudiant')->fetchColumn();
 $req = $bdd->prepare('SELECT prenom, nom, mail, genre FROM Etudiant');
 $req->execute();
@@ -40,7 +47,10 @@ $req->execute();
         <div class="container fluid">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="#">Liste des eleves</a>
+                    <a href="./index.php">Liste des eleves</a>
+                </li>
+                 <li>
+                    <a href="./debut.php">Inscription</a>
                 </li>
             </ul>
         </div>
@@ -73,6 +83,11 @@ $req->execute();
                               // ------------------------------------------
                               echo '</td>';
                         }
+                      
+                      
+                      
+                    
+                      
                         echo '      <td>';
                         echo '            <form method="post" onsubmit="return confirm(\'Êtes-vous sûr de vouloir supprimer cette personne ?\');">';
                         echo '                  <input type="hidden" name="mail_a_supprimer" value="'.$donnees[2].'">';
@@ -80,6 +95,18 @@ $req->execute();
                         echo '                        Supprimer';
                         echo '                  </button>';
                         echo '            </form>';
+                      
+                        echo '      </td>';
+                      
+                      
+                      echo '      <td>';
+                        echo '            <form method="post" onsubmit="return confirm(\'Êtes-vous sûr de vouloir modifier cette personne ?\');">';
+                        echo '                  <input type="hidden" name="mail_a_modifier" value="'.$donnees[3].'">';
+                        echo '                  <button type="submit" name="update" class="button-delete">';
+                        echo '                        Modifier';
+                        echo '                  </button>';
+                        echo '            </form>';
+                      
                         echo '      </td>';
                         echo '</tr>';
                         $j=1;
