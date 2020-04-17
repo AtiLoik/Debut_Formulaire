@@ -101,7 +101,7 @@ $req->execute();
                       
                       echo '      <td>';
                         echo '            <form method="post" onsubmit="return confirm(\'Êtes-vous sûr de vouloir modifier cette personne ?\');">';
-                        echo '                  <input type="hidden" name="mail_a_modifier" value="'.$donnees[3].'">';
+                        echo '                  <input type="hidden" name="mail_a_modifier" value="'.$donnees[2].'">';
                         echo '                  <button type="submit" name="update" class="button-delete">';
                         echo '                        Modifier';
                         echo '                  </button>';

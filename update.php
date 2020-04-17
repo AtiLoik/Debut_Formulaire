@@ -1,5 +1,6 @@
 <?php 
-$mail = $_POST['mail'];
+var_dump($_POST);
+$mail = $_POST['mail_a_modifier'];
 if (isset($_POST['envoyer']))
 {
 
@@ -13,11 +14,14 @@ try{
                 
                 $conn->exec($sql);
                 echo 'Entrée Modifiée dans la table';
+                header("location: index.php");
             }
             
             catch(PDOException $e){
               echo "Erreur : " . $e->getMessage();
             }
+    
+
 
 
 
@@ -55,7 +59,7 @@ try{
                 <input type="text" id="genre" name="genre" placeholder="Entrez votre nouveau genre">
             </div>
             <div class="button">
-                <button type="submit" name="envoyez">Validez</button>
+                <button type="submit" name="envoyer">Validez</button>
             </div>
         </form>
     </body>
