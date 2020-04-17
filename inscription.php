@@ -36,6 +36,7 @@ catch (Exception $e)
         echo "Success";
         
         header('Location: index.php'); 
+
     }
 
 ?>

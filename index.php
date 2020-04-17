@@ -30,6 +30,13 @@ if (isset($_POST["supprimer"]))
       $statement->execute();
 }
 
+if (isset($_POST["update"]))
+{      $mail = $_POST["mail_a_modifier"]; 
+      header('Location: update.php/?mail='.$mail);
+  exit();
+}
+    
+    
 $NbrLigne = $bdd->query('SELECT count(nom) FROM Etudiant')->fetchColumn();
 $req = $bdd->prepare('SELECT prenom, nom, mail, genre FROM Etudiant');
 $req->execute();
@@ -40,7 +47,10 @@ $req->execute();
         <div class="container fluid">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="#">Liste des eleves</a>
+                    <a href="./index.php">Liste des eleves</a>
+                </li>
+                 <li>
+                    <a href="./debut.php">Inscription</a>
                 </li>
             </ul>
         </div>
@@ -73,6 +83,11 @@ $req->execute();
                               // ------------------------------------------
                               echo '</td>';
                         }
+                      
+                      
+                      
+                    
+                      
                         echo '      <td>';
                         echo '            <form method="post" onsubmit="return confirm(\'Êtes-vous sûr de vouloir supprimer cette personne ?\');">';
                         echo '                  <input type="hidden" name="mail_a_supprimer" value="'.$donnees[2].'">';
@@ -80,6 +95,18 @@ $req->execute();
                         echo '                        Supprimer';
                         echo '                  </button>';
                         echo '            </form>';
+                      
+                        echo '      </td>';
+                      
+                      
+                      echo '      <td>';
+                        echo '            <form method="post" onsubmit="return confirm(\'Êtes-vous sûr de vouloir modifier cette personne ?\');">';
+                        echo '                  <input type="hidden" name="mail_a_modifier" value="'.$donnees[2].'">';
+                        echo '                  <button type="submit" name="update" class="button-delete">';
+                        echo '                        Modifier';
+                        echo '                  </button>';
+                        echo '            </form>';
+                      
                         echo '      </td>';
                          echo '      <td>';
                          echo '            <form  action="update.php" method="post" >';
